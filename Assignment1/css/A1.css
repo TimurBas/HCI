@@ -1,0 +1,113 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+#title {
+    text-align: center;
+    margin: 8px;
+    font-size: 30px;
+    transition: all 0.3s ease 0s;
+}
+
+#description1, #description2, #result{
+    text-align: center;
+    font-size: 25px;
+    transition: all 0.3s ease 0s;
+}
+
+#btn {
+    user-select: none;
+    margin-left: 47.5%;
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+#btn:hover {
+    font-weight: 700 !important;
+    letter-spacing: 4px;
+    background:  rgba(224, 18, 18, 0.561);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) ;
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+#retry {
+    letter-spacing: 1px;
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+#retry:hover {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    letter-spacing: 4px;
+    background:  rgba(224, 18, 18, 0.561);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) ;
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+#grid {
+    display: inline-grid;
+}
+
+.grid-item-1 {
+    background-color: #e6eaff;
+    text-align: center;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.grid-item-1:hover {
+    background-color: rgba(224, 18, 18, 0.561);
+    transition: all 0.1s ease 0s;
+}
+
+.grid-item-2 {
+    background-color: #5f9baa;
+    text-align: center;
+    margin: 5px;
+}
+
+.grid-item-3 {
+    background-color: #46717c;
+    text-align: center;
+    margin: 5px;
+}
+
+.grid-item-4 {
+    background-color: #294349;
+    text-align: center;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.reaction-time-result {
+    color: black;
+    font-size: 20px;
+}
+
+
+

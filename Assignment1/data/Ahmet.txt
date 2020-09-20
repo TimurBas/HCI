@@ -1,0 +1,142 @@
+Trial 1: 339 ms
+Trial 2: 493 ms
+Trial 3: 471 ms
+Trial 4: 748 ms
+Trial 5: 438 ms
+Trial 6: 614 ms
+Trial 7: 668 ms
+Trial 8: 905 ms
+Trial 9: 687 ms
+Trial 10: 720 ms
+Mean: 608 ms
+SD: 162 ms
+
+
+
+Trial 1: 273 ms
+Trial 2: 472 ms
+Trial 3: 467 ms
+Trial 4: 497 ms
+Trial 5: 424 ms
+Trial 6: 532 ms
+Trial 7: 569 ms
+Trial 8: 784 ms
+Trial 9: 659 ms
+Trial 10: 606 ms
+Mean: 528 ms
+SD: 132 ms
+
+
+
+Trial 1: 265 ms
+Trial 2: 435 ms
+Trial 3: 444 ms
+Trial 4: 359 ms
+Trial 5: 432 ms
+Trial 6: 465 ms
+Trial 7: 682 ms
+Trial 8: 647 ms
+Trial 9: 400 ms
+Trial 10: 852 ms
+Mean: 498 ms
+SD: 166 ms
+
+
+
+Trial 1: 240 ms
+Trial 2: 361 ms
+Trial 3: 473 ms
+Trial 4: 506 ms
+Trial 5: 493 ms
+Trial 6: 398 ms
+Trial 7: 511 ms
+Trial 8: 551 ms
+Trial 9: 630 ms
+Trial 10: 620 ms
+Mean: 478 ms
+SD: 113 ms
+
+
+Trial 1: 252 ms
+Trial 2: 327 ms
+Trial 3: 437 ms
+Trial 4: 454 ms
+Trial 5: 453 ms
+Trial 6: 533 ms
+Trial 7: 392 ms
+Trial 8: 588 ms
+Trial 9: 547 ms
+Trial 10: 647 ms
+Mean: 463 ms
+SD: 114 ms
+
+
+Trial 1: 430 ms
+Trial 2: 382 ms
+Trial 3: 427 ms
+Trial 4: 505 ms
+Trial 5: 442 ms
+Trial 6: 527 ms
+Trial 7: 445 ms
+Trial 8: 513 ms
+Trial 9: 643 ms
+Trial 10: 674 ms
+Mean: 499 ms
+SD: 91 ms
+
+
+
+Trial 1: 248 ms
+Trial 2: 382 ms
+Trial 3: 402 ms
+Trial 4: 405 ms
+Trial 5: 452 ms
+Trial 6: 430 ms
+Trial 7: 425 ms
+Trial 8: 417 ms
+Trial 9: 656 ms
+Trial 10: 755 ms
+Mean: 457 ms
+SD: 137 ms
+
+
+Trial 1: 243 ms
+Trial 2: 372 ms
+Trial 3: 406 ms
+Trial 4: 460 ms
+Trial 5: 474 ms
+Trial 6: 631 ms
+Trial 7: 894 ms
+Trial 8: 644 ms
+Trial 9: 564 ms
+Trial 10: 558 ms
+Mean: 525 ms
+SD: 170 ms
+
+
+Trial 1: 251 ms
+Trial 2: 396 ms
+Trial 3: 456 ms
+Trial 4: 403 ms
+Trial 5: 358 ms
+Trial 6: 791 ms
+Trial 7: 586 ms
+Trial 8: 517 ms
+Trial 9: 626 ms
+Trial 10: 786 ms
+Mean: 517 ms
+SD: 171 ms
+
+
+Trial 1: 238 ms
+Trial 2: 394 ms
+Trial 3: 440 ms
+Trial 4: 447 ms
+Trial 5: 417 ms
+Trial 6: 483 ms
+Trial 7: 505 ms
+Trial 8: 653 ms
+Trial 9: 485 ms
+Trial 10: 615 ms
+Mean: 468 ms
+SD: 110 ms
