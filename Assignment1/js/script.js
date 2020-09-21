@@ -6,15 +6,13 @@ const description2 = document.getElementById("description2");
 const btn = document.getElementById("btn");
 
 // Variables
-let gridSize = 1;
-let gridCreationTime;
-let whiteCircle;
-let reactionTime = new Array();
+let gridSize = 0;
+let reactionTimes = new Array();
 let resultDiv;
 
 // Methods
 function startTest() {
-    btn.onclick = function(){removeHTML()}
+    btn.onclick = () => removeHTML();
 }
 
 function removeHTML() {
@@ -22,11 +20,13 @@ function removeHTML() {
     description1.remove();
     description2.remove();
     btn.remove();
-    experiment();
+    startNextRound();
 }
 
-function experiment() {
-    let delay = Math.floor(2000 * Math.random() + 500);
+function startNextRound() {
+    gridSize++;
+
+    let delay = Math.floor(3000 * Math.random() + 500);
 
     if(gridSize > 10) {
         showResults();
@@ -35,83 +35,43 @@ function experiment() {
     setTimeout(() => createGrid(gridSize), delay);
 }
 
-function circleClicked() {
-    let circleClickedTime = new Date().getTime();
+function createGrid(n) {
+    grid.style.gridTemplateRows = "repeat(" + n.toString() + ", 1fr)";
+    grid.style.gridTemplateColumns = "repeat(" + n.toString() + ", 1fr)"
 
-    let deltaTime = circleClickedTime - gridCreationTime;
-    reactionTime.push(deltaTime);
+    var items = [];
+
+    // Fill array with random grid items
+    for(let i = 0; i < n * n; i++) {
+        let gridItem = createGridItem(Math.floor((3 * Math.random() + 2)), 700 / n - 10);
+        items.push(gridItem);
+    }
+
+    // Add one white circle to array at random index
+    var whiteCircle = createGridItem(1, 700 / n - 10);
+    var time = new Date().getTime();
+    whiteCircle.onmousedown = () => circleClicked(time);
+    items[Math.floor(Math.random() * items.length)] = whiteCircle;
+
+    // Draw all grid items from array
+    items.forEach(p => grid.appendChild(p));
+}
+
+function createGridItem(classNumber, size) {
+    let gridItem = document.createElement("div");
+    gridItem.style.width = size + "px";
+    gridItem.style.height = size + "px";
+    gridItem.className = "grid-item-" + classNumber;
+
+    return gridItem;
+}
+
+function circleClicked(gridCreationTime) {
+    console.log(new Date().getTime() - gridCreationTime);
+    reactionTimes.push(new Date().getTime() - gridCreationTime);
 
     clearGrid();
-
-    gridSize++;
-    experiment();
-}
-
-function showResults() {
-    resultDiv = document.createElement("div");
-    grid.parentNode.insertBefore(resultDiv, grid);
-
-    for(let i = 0; i < reactionTime.length; i++) {
-        let reactionTimeResult = document.createElement("div");
-        reactionTimeResult.style.width = 300 + "px";
-        reactionTimeResult.style.height = 50 + "px";
-
-        resultDiv.appendChild(reactionTimeResult);
-
-        reactionTimeResult.className = "reaction-time-result";
-        reactionTimeResult.innerHTML = "Trial " + (i+1).toString()+ ": " + reactionTime[i] + " ms";
-    }
-
-    let meanDeltaTime = 0.0;
-
-    for (let i = 0; i < reactionTime.length; i++) {
-        meanDeltaTime += reactionTime[i];
-    }
-
-    meanDeltaTime = Math.round(meanDeltaTime / reactionTime.length);
-
-    let meanDeltaTimeResult = document.createElement("div");
-    meanDeltaTimeResult.style.width = 300 + "px";
-    meanDeltaTimeResult.style.height = 50 + "px";
-
-    resultDiv.appendChild(meanDeltaTimeResult);
-
-    meanDeltaTimeResult.className = "reaction-time-result";
-    meanDeltaTimeResult.innerHTML = "Mean: " + meanDeltaTime + " ms";
-
-    let standardDeviation = 0.0;
-    for (let i = 0; i < reactionTime.length; i++) {
-        let diff = (reactionTime[i] - meanDeltaTime);
-        standardDeviation += diff * diff;
-    }
-    standardDeviation = Math.round(Math.sqrt(standardDeviation / reactionTime.length));
-
-    let standardDeviationResult = document.createElement("div");
-    standardDeviationResult.style.width = 300 + "px";
-    standardDeviationResult.style.height = 50 + "px";
-
-    resultDiv.appendChild(standardDeviationResult);
-
-    standardDeviationResult.className = "reaction-time-result";
-    standardDeviationResult.innerHTML = "SD: " + standardDeviation + " ms";
-
-    let retryButton = document.createElement("div");
-    resultDiv.appendChild(retryButton);
-    retryButton.id = "retry";
-    retryButton.innerHTML = "Retry";
-
-    retryButton.onclick = function(){
-        clearResult();
-        reactionTime = new Array();
-        gridSize = 1;
-        experiment();
-    }
-}
-
-function clearResult() {
-    while(resultDiv.lastElementChild) {
-        resultDiv.removeChild(resultDiv.lastElementChild);
-    }
+    startNextRound();
 }
 
 function clearGrid() {
@@ -120,48 +80,57 @@ function clearGrid() {
     }
 }
 
-function createGrid(n) {
-    grid.style.gridTemplateRows = "repeat(" + n.toString() + ", 1fr)";
-    grid.style.gridTemplateColumns = "repeat(" + n.toString() + ", 1fr)"
+function showResults() {
+    resultDiv = document.createElement("div");
+    grid.parentNode.insertBefore(resultDiv, grid);
 
-    let isPlaced = false;
-    let isPlaced2 = false;
-
-    for(let i = 0; i < n * n; i++) {
-
-        // Create grid item
-        let gridItem = document.createElement("div");
-
-        //Size of grid item
-        gridItem.style.width = (700 / n - 10).toString() + "px";
-        gridItem.style.height = (700 / n -10).toString() + "px";
-
-        // Append grid item to grid
-        grid.appendChild(gridItem);
-
-        // Return a random number between 2-4
-        let randomShapeNumber = Math.floor(((3 * Math.random()) + 2));
-        
-        let probability = 1 / (n * n - i);
-        if(Math.random() < probability && !isPlaced) {
-            randomShapeNumber = 1;
-            isPlaced = true;
-            isPlaced2 = true;
-        }
-
-        // Determine which shape it should be
-        gridItem.className = "grid-item-" + randomShapeNumber;
-
-        if(isPlaced2) {
-            whiteCircle = gridItem;
-            isPlaced2 = false;
-        }
+    // Show result of each trial
+    for (let i = 0; i < reactionTimes.length; i++) {
+        resultDiv.appendChild(createResultDiv("Trial " + (i + 1).toString(), reactionTimes[i]));
     }
 
-    // Get the time the entire grid was created
-    gridCreationTime = new Date().getTime();
-    whiteCircle.onclick = function(){circleClicked()};
+    // Calculate and show mean
+    let meanDeltaTime = reactionTimes.reduce((a, b) => a + b) / reactionTimes.length;
+    resultDiv.appendChild(createResultDiv("Mean", meanDeltaTime));
+    
+    // let standardDeviation = 0.0;
+    // for (let i = 0; i < reactionTimes.length; i++) {
+    //     let diff = (reactionTimes[i] - meanDeltaTime);
+    //     standardDeviation += diff * diff;
+    // }
+    // standardDeviation = Math.round(Math.sqrt(standardDeviation / reactionTimes.length));
+
+    // Calculate and show standard deviation
+    let standardDeviation = Math.sqrt(reactionTimes.map(a => a - 600).map(a => a * a).reduce((a, b) => a + b) / reactionTimes.length);
+    resultDiv.appendChild(createResultDiv("SD", standardDeviation));
+
+    let retryButton = document.createElement("div");
+    resultDiv.appendChild(retryButton);
+    retryButton.id = "retry";
+    retryButton.innerHTML = "Retry";
+
+    retryButton.onclick = () => {
+        clearResult();
+        reactionTimes = new Array();
+        gridSize = 0;
+        startNextRound();
+    }
 }
 
+function createResultDiv(attribute, attributeResult) {
+    let resultDiv = document.createElement("div");
+    resultDiv.style.width = 300 + "px";
+    resultDiv.style.height = 50 + "px";
+    resultDiv.className = "reaction-time-result";
+    resultDiv.innerHTML = attribute + ": " + Math.round(attributeResult) + " ms";
+
+    return resultDiv;
+}
+
+function clearResult() {
+    while(resultDiv.lastElementChild) {
+        resultDiv.removeChild(resultDiv.lastElementChild);
+    }
+}
 
 window.onload = () => startTest();
