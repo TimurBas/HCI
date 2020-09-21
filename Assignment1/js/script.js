@@ -4,6 +4,8 @@ const title = document.getElementById("title");
 const description1 = document.getElementById("description1");
 const description2 = document.getElementById("description2");
 const btn = document.getElementById("btn");
+const testSizePixels = 700;
+const gridItemMargin = 10;
 
 // Variables
 let gridSize = 0;
@@ -43,12 +45,12 @@ function createGrid(n) {
 
     // Fill array with random grid items
     for(let i = 0; i < n * n; i++) {
-        let gridItem = createGridItem(Math.floor((3 * Math.random() + 2)), 700 / n - 10);
+        let gridItem = createGridItem(Math.floor((3 * Math.random() + 2)), testSizePixels / n - gridItemMargin);
         items.push(gridItem);
     }
 
     // Add one white circle to array at random index
-    var whiteCircle = createGridItem(1, 700 / n - 10);
+    var whiteCircle = createGridItem(1, testSizePixels / n - gridItemMargin);
     var time = new Date().getTime();
     whiteCircle.onmousedown = () => circleClicked(time);
     items[Math.floor(Math.random() * items.length)] = whiteCircle;
@@ -93,15 +95,8 @@ function showResults() {
     let meanDeltaTime = reactionTimes.reduce((a, b) => a + b) / reactionTimes.length;
     resultDiv.appendChild(createResultDiv("Mean", meanDeltaTime));
     
-    // let standardDeviation = 0.0;
-    // for (let i = 0; i < reactionTimes.length; i++) {
-    //     let diff = (reactionTimes[i] - meanDeltaTime);
-    //     standardDeviation += diff * diff;
-    // }
-    // standardDeviation = Math.round(Math.sqrt(standardDeviation / reactionTimes.length));
-
     // Calculate and show standard deviation
-    let standardDeviation = Math.sqrt(reactionTimes.map(a => a - 600).map(a => a * a).reduce((a, b) => a + b) / reactionTimes.length);
+    let standardDeviation = Math.sqrt(reactionTimes.map(a => a - meanDeltaTime).map(a => a * a).reduce((a, b) => a + b) / reactionTimes.length);
     resultDiv.appendChild(createResultDiv("SD", standardDeviation));
 
     let retryButton = document.createElement("div");
