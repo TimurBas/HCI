@@ -74,6 +74,10 @@
     border-radius: 50%;
 }
 
+.grid-item-1:hover{
+    background-color: #e6eaffd7;
+}
+
 .grid-item-2 {
     background-color: #5f9baa;
     text-align: center;
