@@ -4,4 +4,4 @@
 #### Rasmus Kock Thygesen & Timur Bas
 
 
-[Assignment 1]: https://gitlab.au.dk/au632749/HCI/-/blob/Assignment1/A1.html
+[Assignment 1]: https://timurbas.github.io/HCI/Assignment1/A1.html
