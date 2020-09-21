@@ -1,0 +1,29 @@
+Mean: 565 ms
+SD: 126 ms
+
+Mean: 623 ms
+SD: 171 ms
+
+Mean: 610 ms
+SD: 183 ms
+
+Mean: 597 ms
+SD: 153 ms
+
+Mean: 548 ms
+SD: 184 ms
+
+Mean: 553 ms
+SD: 201 ms
+
+Mean: 543 ms
+SD: 229 ms
+
+Mean: 531 ms
+SD: 157 ms
+
+Mean: 511 ms
+SD: 138 ms
+
+Mean: 537 ms
+SD: 181 ms
