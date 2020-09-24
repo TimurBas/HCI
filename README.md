@@ -6,4 +6,4 @@
 
 
 [Assignment 1]: https://timurbas.github.io/HCI/Assignment1/A1.html
-[Assignment 2]: https://timurbas.github.io/HCI/Assignment2/DA4_g07_assignment2.pdf
+[Assignment 2]: https://github.com/TimurBas/HCI/raw/master/Assignment2/DA4_g07_assignment2.pdf
