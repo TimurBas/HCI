@@ -14,8 +14,8 @@ let reactionTimes = new Array();
 let resultDiv;
 let testTimeout;
 let testActive = true;
-let messageH1;
-let alertTimout;
+let messageH1 = null;
+let alertTimeout = null;
 
 // Setup
 document.onmousedown = () =>  {
@@ -23,14 +23,14 @@ document.onmousedown = () =>  {
         return;
     }
     alertMessage("Stop clicking!");
-    addRandomDelay();
+    addRandomDelay(3000);
 }
 window.onload = () => startTest();
 
 // Methods
-function addRandomDelay() {
+function addRandomDelay(min) {
     clearTimeout(testTimeout);
-    let delay = Math.floor(3000 * Math.random() + 1000);
+    let delay = Math.floor(3000 * Math.random() + min);
     testTimeout = setTimeout(() => createGrid(gridSize), delay);
 }
 
@@ -56,7 +56,7 @@ function startNextRound() {
         showResults();
         return;
     }
-    addRandomDelay();
+    addRandomDelay(1500);
 }
 
 function createGrid(n) {
@@ -93,7 +93,6 @@ function createGridItem(classNumber, size) {
 
 function circleClicked(gridCreationTime) {
     setTimeout(() => testActive = false, 50);
-    console.log(new Date().getTime() - gridCreationTime);
     reactionTimes.push(new Date().getTime() - gridCreationTime);
 
     clearGrid();
@@ -153,16 +152,17 @@ function clearResult() {
 }
 
 function alertMessage(message) {
-    if (messageH1 != null) {
-        clearTimeout(alertTimout);
-        alertTimeout = setTimeout(() => {
-            messageH1.remove();
-        }, 1500);
-    } else {
+    if (messageH1 == null) {
         messageH1 = document.createElement("h1");
         messageH1.innerHTML = message;
         document.body.insertBefore(messageH1, center);
-    
-        alertTimeout = setTimeout(() => messageH1.remove(), 1500);
     }
+
+    if (alertTimeout != null) {
+        clearTimeout(alertTimeout);
+    }
+    alertTimeout = setTimeout(() => {
+        messageH1.remove();
+        messageH1 = null;
+    }, 1500);
 }
