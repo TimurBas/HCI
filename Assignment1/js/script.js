@@ -31,7 +31,6 @@ window.onload = () => startTest();
 
 // Methods
 function changeSize() {
-    console.log(window.innerHeight, window.innerWidth);
     size = Math.min(window.innerHeight, window.innerWidth) * 0.75;
     size = Math.max(size, 300);
     document.documentElement.style.setProperty("--grid-pixel-size", size.toString() + "px");
@@ -168,7 +167,6 @@ function alertMessage(message) {
         messageH1 = document.createElement("h1");
         messageH1.id = "alertMessage";
         messageH1.innerHTML = message;
-        console.log(messageH1);
         if (center.contains(grid)) {
             center.insertBefore(messageH1, grid);
         }
