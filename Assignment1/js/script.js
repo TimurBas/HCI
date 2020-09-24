@@ -13,13 +13,15 @@ let gridSize = 0;
 let reactionTimes = new Array();
 let resultDiv;
 let testTimeout;
-let testActive = true;
+let shouldClick = true;
 let messageH1 = null;
 let alertTimeout = null;
 
 // Setup
-document.onmousedown = () =>  {
-    if (testActive) {
+window.onresize = () => changeSize();
+
+document.onmousedown = () => {
+    if (shouldClick) {
         return;
     }
     alertMessage("Stop clicking!");
@@ -28,6 +30,13 @@ document.onmousedown = () =>  {
 window.onload = () => startTest();
 
 // Methods
+function changeSize() {
+    console.log(window.innerHeight, window.innerWidth);
+    size = Math.min(window.innerHeight, window.innerWidth) * 0.75;
+    size = Math.max(size, 300);
+    document.documentElement.style.setProperty("--grid-pixel-size", size.toString() + "px");
+}
+
 function addRandomDelay(min) {
     clearTimeout(testTimeout);
     let delay = Math.floor(3000 * Math.random() + min);
@@ -35,9 +44,10 @@ function addRandomDelay(min) {
 }
 
 function startTest() {
+    changeSize();
     btn.onclick = () => {
         removeHTML();
-        testActive = false;
+        shouldClick = false;
     }
 }
 
@@ -60,7 +70,8 @@ function startNextRound() {
 }
 
 function createGrid(n) {
-    testActive = true;
+    shouldClick = true;
+    document.documentElement.style.setProperty("--grid-size", n.toString());
     grid.style.gridTemplateRows = "repeat(" + n.toString() + ", 1fr)";
     grid.style.gridTemplateColumns = "repeat(" + n.toString() + ", 1fr)"
 
@@ -68,12 +79,12 @@ function createGrid(n) {
 
     // Fill array with random grid items
     for(let i = 0; i < n * n; i++) {
-        let gridItem = createGridItem(Math.floor((3 * Math.random() + 2)), testSizePixels / n - gridItemMargin);
+        let gridItem = createGridItem(Math.floor((3 * Math.random() + 2)));
         items.push(gridItem);
     }
 
     // Add one white circle to array at random index
-    let whiteCircle = createGridItem(1, testSizePixels / n - gridItemMargin);
+    let whiteCircle = createGridItem(1);
     let time = new Date().getTime();
     whiteCircle.onmousedown = () => circleClicked(time);
     items[Math.floor(Math.random() * items.length)] = whiteCircle;
@@ -82,17 +93,14 @@ function createGrid(n) {
     items.forEach(p => grid.appendChild(p));
 }
 
-function createGridItem(classNumber, size) {
+function createGridItem(classNumber) {
     let gridItem = document.createElement("div");
-    gridItem.style.width = size + "px";
-    gridItem.style.height = size + "px";
     gridItem.className = "grid-item-" + classNumber;
-
     return gridItem;
 }
 
 function circleClicked(gridCreationTime) {
-    setTimeout(() => testActive = false, 50);
+    setTimeout(() => shouldClick = false, 50);
     reactionTimes.push(new Date().getTime() - gridCreationTime);
 
     clearGrid();
@@ -106,8 +114,12 @@ function clearGrid() {
 }
 
 function showResults() {
+    grid.remove();
+    shouldClick = true;
     resultDiv = document.createElement("div");
-    grid.parentNode.insertBefore(resultDiv, grid);
+    document.documentElement.style.setProperty("--center-height", (665).toString());
+    center.height = "665px";
+    center.appendChild(resultDiv);
 
     // Show result of each trial
     for (let i = 0; i < reactionTimes.length; i++) {
@@ -154,8 +166,12 @@ function clearResult() {
 function alertMessage(message) {
     if (messageH1 == null) {
         messageH1 = document.createElement("h1");
+        messageH1.id = "alertMessage";
         messageH1.innerHTML = message;
-        document.body.insertBefore(messageH1, center);
+        console.log(messageH1);
+        if (center.contains(grid)) {
+            center.insertBefore(messageH1, grid);
+        }
     }
 
     if (alertTimeout != null) {

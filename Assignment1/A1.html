@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+    <style media="all"> 
+        html, body{height:100%;} 
+        #outer{
+        min-height:100%;
+        }
+        
+        * html #outer{height:100%;} /* for IE 6, if you care */
+        
+        body, p { margin:0; padding:0}
+        
+        </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no>
@@ -17,7 +28,7 @@
     <h3 id="description2">To start press the button below</h3>
     <button id="btn">Start</button>
 
-    <div class="center">
+    <div id="center" class="center">
         <div id="grid"></div>
     </div>
     <script src="js/script.js"></script>
