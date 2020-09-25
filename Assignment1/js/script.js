@@ -76,6 +76,7 @@ function createGrid(n) {
         grid.id = "grid";
         center.appendChild(grid);
         retry = false;
+        shouldClick = false;
     }
     shouldClick = true;
     document.documentElement.style.setProperty("--grid-size", n.toString());
