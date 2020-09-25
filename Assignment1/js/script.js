@@ -1,5 +1,4 @@
 // Constants
-const grid = document.getElementById("grid");
 const title = document.getElementById("title");
 const description1 = document.getElementById("description1");
 const description2 = document.getElementById("description2");
@@ -9,6 +8,7 @@ const testSizePixels = 700;
 const gridItemMargin = 10;
 
 // Variables
+let grid = document.getElementById("grid");
 let gridSize = 0;
 let reactionTimes = new Array();
 let resultDiv;
@@ -16,6 +16,7 @@ let testTimeout;
 let shouldClick = true;
 let messageH1 = null;
 let alertTimeout = null;
+let retry = false;
 
 // Setup
 window.onresize = () => changeSize();
@@ -69,6 +70,13 @@ function startNextRound() {
 }
 
 function createGrid(n) {
+    if(retry) {
+        console.log("hi")
+        grid = document.createElement("div");
+        grid.id = "grid";
+        center.appendChild(grid);
+        retry = false;
+    }
     shouldClick = true;
     document.documentElement.style.setProperty("--grid-size", n.toString());
     grid.style.gridTemplateRows = "repeat(" + n.toString() + ", 1fr)";
@@ -142,6 +150,7 @@ function showResults() {
         clearResult();
         reactionTimes = new Array();
         gridSize = 0;
+        retry = true;
         startNextRound();
     }
 }
