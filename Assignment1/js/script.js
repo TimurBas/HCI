@@ -22,6 +22,7 @@ let retry = false;
 window.onresize = () => changeSize();
 
 document.onmousedown = () => {
+    console.log(shouldClick);
     if (shouldClick) {
         return;
     }
@@ -70,14 +71,6 @@ function startNextRound() {
 }
 
 function createGrid(n) {
-    if(retry) {
-        console.log("hi")
-        grid = document.createElement("div");
-        grid.id = "grid";
-        center.appendChild(grid);
-        retry = false;
-        shouldClick = false;
-    }
     shouldClick = true;
     document.documentElement.style.setProperty("--grid-size", n.toString());
     grid.style.gridTemplateRows = "repeat(" + n.toString() + ", 1fr)";
@@ -108,7 +101,7 @@ function createGridItem(classNumber) {
 }
 
 function circleClicked(gridCreationTime) {
-    setTimeout(() => shouldClick = false, 50);
+    setTimeout(() => shouldClick = false, 10);
     reactionTimes.push(new Date().getTime() - gridCreationTime);
 
     clearGrid();
@@ -123,7 +116,7 @@ function clearGrid() {
 
 function showResults() {
     grid.remove();
-    shouldClick = true;
+    setTimeout(() => shouldClick = true, 20);
     resultDiv = document.createElement("div");
     document.documentElement.style.setProperty("--center-height", (665).toString());
     center.height = "665px";
@@ -149,10 +142,18 @@ function showResults() {
 
     retryButton.onclick = () => {
         clearResult();
+        document.documentElement.style.setProperty("--grid-size", "1");
+        document.documentElement.style.setProperty("--center-height", "calc(100% - 150px)");
+        changeSize();
         reactionTimes = new Array();
         gridSize = 0;
-        retry = true;
         startNextRound();
+        grid = document.createElement("div");
+        grid.id = "grid";
+        center.appendChild(grid);
+        retry = false;
+        shouldClick = false;
+
     }
 }
 
