@@ -160,8 +160,6 @@ function showResults() {
         shouldClick = false;
     }
 
-    console.log(mailBody);
-
     sendEmail(mailBody);
 }
 
