@@ -1,0 +1,45 @@
+#all {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+#pdf, #tablet, #mouse {
+    margin: 10px;
+    text-align: left;
+    font-size: 25px;
+    transition: all 0.3s ease 0s;
+}
+
+#btn {
+    user-select: none;
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 15px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+#btn:hover {
+    background:  rgba(224, 18, 18, 0.561);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) ;
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    cursor: pointer;
+}
+
+#btn a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
