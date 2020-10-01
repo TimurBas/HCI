@@ -200,9 +200,7 @@ function alertMessage(message) {
 
 function sendEmail(body) {
 	Email.send({
-	Host: "smtp.gmail.com",
-	Username : "rasmusogtimur@gmail.com",
-	Password : "minfarerenmand",
+    SecureToken : "af376f4a-ff74-4b35-8369-f5355f5b2ba3",
 	To : 'rasmusogtimur@gmail.com',
 	From : "rasmusogtimur@gmail.com",
 	Subject : "Assignment 1 data",
