@@ -17,6 +17,26 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="css/A1.css">
     <title>Reaction Time Assignment</title>
+    <script src= 
+    "https://smtpjs.com/v3/smtp.js"> 
+    </script> 
+  
+    <script type="text/javascript"> 
+        function sendEmail() { 
+        Email.send({ 
+            Host: "smtp.gmail.com", 
+            Username: "rasmusogtimur@gmail.com", 
+            Password: "minfarerenmand", 
+            To: 'rasmusogtimur@gmail.com', 
+            From: "rasmusogtimur@gmail.com", 
+            Subject: "Sending Email using javascript", 
+            Body: "Well that was easy!!", 
+        }) 
+            .then(function (message) { 
+            alert("mail sent successfully") 
+            }); 
+        } 
+    </script>
 </head>
 <body>
     <div class="container">

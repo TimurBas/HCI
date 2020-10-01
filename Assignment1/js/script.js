@@ -22,7 +22,6 @@ let retry = false;
 window.onresize = () => changeSize();
 
 document.onmousedown = () => {
-    console.log(shouldClick);
     if (shouldClick) {
         return;
     }
@@ -121,19 +120,25 @@ function showResults() {
     document.documentElement.style.setProperty("--center-height", (665).toString());
     center.height = "665px";
     center.appendChild(resultDiv);
+    mailBody = "";
 
-    // Show result of each trial
+    // Show result of each trial and add to mail
     for (let i = 0; i < reactionTimes.length; i++) {
-        resultDiv.appendChild(createResultDiv("Trial " + (i + 1).toString(), reactionTimes[i]));
+        time = reactionTimes[i];
+        resultDiv.appendChild(createResultDiv("Trial " + (i + 1).toString(), time));
+        mailBody += time + "<br>";
     }
 
-    // Calculate and show mean
+    // Calculate, show, and add mean to mail
     let meanDeltaTime = reactionTimes.reduce((a, b) => a + b) / reactionTimes.length;
     resultDiv.appendChild(createResultDiv("Mean", meanDeltaTime));
+    mailBody += meanDeltaTime.toFixed(3) + "<br>";
+
     
-    // Calculate and show standard deviation
+    // Calculate, show, and add standard deviation to mail
     let standardDeviation = Math.sqrt(reactionTimes.map(a => a - meanDeltaTime).map(a => a * a).reduce((a, b) => a + b) / reactionTimes.length);
     resultDiv.appendChild(createResultDiv("SD", standardDeviation));
+    mailBody += standardDeviation.toFixed(3);
 
     let retryButton = document.createElement("div");
     resultDiv.appendChild(retryButton);
@@ -153,8 +158,11 @@ function showResults() {
         center.appendChild(grid);
         retry = false;
         shouldClick = false;
-
     }
+
+    console.log(mailBody);
+
+    sendEmail(mailBody);
 }
 
 function createResultDiv(attribute, attributeResult) {
@@ -190,4 +198,16 @@ function alertMessage(message) {
         messageH1.remove();
         messageH1 = null;
     }, 1500);
+}
+
+function sendEmail(body) {
+	Email.send({
+	Host: "smtp.gmail.com",
+	Username : "rasmusogtimur@gmail.com",
+	Password : "minfarerenmand",
+	To : 'rasmusogtimur@gmail.com',
+	From : "rasmusogtimur@gmail.com",
+	Subject : "Assignment 1 data",
+	Body : body
+	});
 }
