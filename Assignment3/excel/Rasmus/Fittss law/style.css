@@ -1,0 +1,66 @@
+body {
+	position: relative;
+	width: 50%;
+	margin: 0 auto;
+	font-family: "Tahoma", "Geneva", sans-serif;
+	text-align: center;
+}
+
+h1 {
+	font-family: "Georgia", serif;
+	text-align: center;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+h3{
+	font-family: "Georgia", serif;
+	text-align: center;
+	margin-top: 2em;
+	margin-bottom: 2em;	
+}
+
+p {
+	line-height: 1.5em;
+	padding: 1em;
+	border: solid #333;
+	border-width: 0 1px 0 1px;
+}
+
+.disabledBox {
+    pointer-events: none;
+}
+
+.right-box{
+	visibility: hidden;
+	display: inline-block;
+	border-style: solid;
+	width: 100px;
+	height: 200px;
+	position: relative;
+	left: 0px;
+	background-color: black;
+}
+
+.borderStyle{
+	border-style: solid;
+	border-color: red;
+}
+
+.left-box{
+	visibility: hidden;
+	display: inline-block;
+	width: 60px;
+	height: 200px;
+	position: relative;
+	top:0px;
+	left: 0px;
+	border-style: solid;
+	background-color: black;
+}
+.container{
+	margin-top:2em;
+	margin-left: -15%;
+}
+
+
+
