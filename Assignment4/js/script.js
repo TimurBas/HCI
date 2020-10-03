@@ -7,8 +7,8 @@ const height = 768
 
 // Variables
 let targetDiv = document.createElement("div");
-let target;
 let diameterArray = [];
+let target;
 let IDsArray = [];
 let MTsArray = [];
 let slope;
@@ -35,13 +35,6 @@ class Target {
     }
 }
 
-/* class Calibration {
-    constructor(IDs, MTs) {
-        this.IDs = IDs;
-        this.MTs = MTs;
-    }
-} */
-
 function init() {
     // Insert diameters
     diameterArray[1] = 10;
@@ -62,26 +55,8 @@ function startNewRound() {
     mainCircle.onmousedown = () => startNewRoundConfiguration();
 }
 
-function testResults() {
-    mainCircle.remove();
-    pointDiv = document.createElement("div");
-    pointDiv.id = "point";
-    if (points == 0) {
-        pointDiv.innerHTML = "That was very bad... You got " + points + " points";
-    } else if (points == 1) {
-            pointDiv.innerHTML = "That was very bad... You got " + points + " point";
-    } else if (points <= 20) {
-        pointDiv.innerHTML = "That was OK. You got " + points + " points";
-    } else if (points <= 40) {
-        pointDiv.innerHTML = "That was great. You got " + points + " points";
-    } else {
-        pointDiv.innerHTML = "Excellent you are talented. You got " + points + " points :D!";
-    }
-    content.appendChild(pointDiv);
-}
-
 function startNewRoundConfiguration() {
-    createTarget();
+    createRandomTarget();
     drawTarget(target);
     time = slope * target.calculateID() + intersect * 1.2;
     if(time < 1) {
@@ -100,6 +75,24 @@ function startNewRoundConfiguration() {
     }
 }
 
+function testResults() {
+    mainCircle.remove();
+    pointDiv = document.createElement("div");
+    pointDiv.id = "point";
+    if (points == 0) {
+        pointDiv.innerHTML = "That was very bad... You got " + points + " points";
+    } else if (points == 1) {
+            pointDiv.innerHTML = "That was very bad... You got " + points + " point";
+    } else if (points <= 20) {
+        pointDiv.innerHTML = "That was OK. You got " + points + " points";
+    } else if (points <= 40) {
+        pointDiv.innerHTML = "That was great. You got " + points + " points";
+    } else {
+        pointDiv.innerHTML = "Excellent, you are talented. You got " + points + " points :D!";
+    }
+    content.appendChild(pointDiv);
+}
+
 function calibrateResults() {
     mainCircle.remove();
     lr = linearRegression(IDsArray, MTsArray);
@@ -114,16 +107,16 @@ function calibrate(n) {
 
     mainCircle.onmousedown = () => {
         mainClickedTime = new Date().getTime();
-        createTarget();
+        createRandomTarget();
     }
     targetDiv.onmousedown = () => {
         targetClickedTime = new Date().getTime();
         removeTarget();
 
-        IDsArray[n] = target.calculateID();
-        MTsArray[n] = targetClickedTime - mainClickedTime;
+        IDsArray[n - 1] = target.calculateID();
+        MTsArray[n - 1] = targetClickedTime - mainClickedTime;
 
-        if (n == 0) {
+        if (n == 1) {
             calibrateResults();
         } else {
             calibrate(n - 1);
@@ -140,7 +133,7 @@ function linearRegression(x, y){
     var sum_xx = 0;
     var sum_yy = 0;
 
-    for (var i = 0; i < y.length; i++) {
+    for (var i = 0; i < n; i++) {
         sum_x += x[i];
         sum_y += y[i];
         sum_xy += (x[i]*y[i]);
@@ -155,11 +148,11 @@ function linearRegression(x, y){
     return lr;
 }
 
-function createTarget() {
-    typeNumber = Math.floor(3 * Math.random()) + 1;
-    randomDiameter = diameterArray[typeNumber];
-    position = createRandomPosition(randomDiameter);
-    target = new Target(typeNumber, position);
+function createRandomTarget() {
+    RandomTypeNumber = Math.floor(3 * Math.random()) + 1;
+    randomDiameter = diameterArray[RandomTypeNumber];
+    position = createRandomTargetPosition(randomDiameter);
+    target = new Target(RandomTypeNumber, position);
     drawTarget(target);
 }
 
@@ -170,7 +163,7 @@ function drawTarget(target) {
     content.appendChild(targetDiv);
 }
 
-function createRandomPosition(diameter) {
+function createRandomTargetPosition(diameter) {
     radius = diameter / 2;
     
     while (true) {
@@ -192,9 +185,5 @@ function removeTarget() {
     targetDiv.remove();
 }
 
-/* function dinfar() {
-    createTarget(3, createRandomPosition(50));
-    setTimeout(() => dinfar(), 100);
-} */
-
 init();
+

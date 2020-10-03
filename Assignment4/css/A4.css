@@ -77,11 +77,3 @@
     display: inline-block;
     transition: all 0.3s ease 0s;
 }
-
-#point:hover {
-    background: rgb(35, 107, 65);
-    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) ;
-    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    cursor: pointer;
-}
