@@ -16,7 +16,7 @@ let slope;
 let intersect;
 let points = 0;
 let round = 0;
-let n = 5;
+let n = 10;
 
 class Position {
     constructor(x, y, distance) { 
@@ -106,7 +106,7 @@ function startTest() {
 }
 
 function startNewRound() {
-    if(round == 10) {
+    if(round == 60) {
         testResults();
     }
     mainCircle.onmousedown = () => {
@@ -146,6 +146,12 @@ function testResults() {
 
     createResults(points);
     content.appendChild(resultDiv);
+    emailBody = "Points: " + points + "<br>" +
+                "Hit rate: " + Math.round((hitRate * 100) * 100) / 100 + "<br>" +
+                "Slope: " + Math.round((slope / 1000) * 100) / 100 + "<br>" +
+                "Intersect: " + Math.round((intersect / 1000) * 100) / 100 + "<br>" +
+                "Throughput: " + Math.round(((1 / slope) * 1000) * 100) / 100;         
+    sendEmail(emailBody);
 }
 
 function createResults(points) {
@@ -240,6 +246,16 @@ function linearRegression(x, y){
     lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
 
     return lr;
+}
+
+function sendEmail(body) {
+	Email.send({
+    SecureToken : "af376f4a-ff74-4b35-8369-f5355f5b2ba3",
+	To : 'rasmusogtimur@gmail.com',
+	From : "rasmusogtimur@gmail.com",
+	Subject : "Assignment 4 data",
+	Body : body
+	});
 }
 
 init();

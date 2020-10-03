@@ -11,6 +11,8 @@
 }
 
 #description1, #description2{
+    max-width: 1000px;
+    margin-left: 13px;
     text-align: center;
     font-size: 25px;
     transition: all 0.3s ease 0s;
@@ -77,7 +79,7 @@
 }
 
 #button {
-    margin-top: calc(var(--height)/2 - 32.5px - 46px - 38px - 38px - 75px);
+    margin-top: 16px;
     text-align: center;  
     user-select: none;
     border: none;
@@ -97,7 +99,7 @@
 }
 
 #results {
-    margin-top: calc(var(--height)/2 - 82.5px);
+    margin-top: 270px;
     text-align: center;  
     user-select: none;
     border: none;
