@@ -2,6 +2,7 @@
 // Constants
 const content = document.getElementById("content");
 const mainCircle = document.getElementById("main-circle");
+const button = document.getElementById("button");
 const width = 1024;
 const height = 768
 
@@ -15,6 +16,7 @@ let slope;
 let intersect;
 let points = 0;
 let round = 0;
+let n = 5;
 
 class Position {
     constructor(x, y, distance) { 
@@ -40,57 +42,48 @@ function init() {
     diameterArray[1] = 10;
     diameterArray[2] = 30;
     diameterArray[3] = 50;
-    calibrate(1);
-}
-
-function startTest() {
-    content.appendChild(mainCircle);
-    startNewRound();
-}
-
-function startNewRound() {
-    if(round == 3) {
-        testResults();
-    }
-    mainCircle.onmousedown = () => startNewRoundConfiguration();
-}
-
-function startNewRoundConfiguration() {
-    createRandomTarget();
-    drawTarget(target);
-    time = slope * target.calculateID() + intersect * 1.2;
-    if(time < 1) {
-        time = (150 * Math.random()) + 10 * 1.2;
-    }
-    round++;
-    timeout = setTimeout(() => {
-        targetDiv.remove();
-        startNewRound();
-    }, time);
-    targetDiv.onmousedown = () => {
-        clearTimeout(timeout);
-        points++;
-        targetDiv.remove();
-        startNewRound();
-    }
-}
-
-function testResults() {
+    
     mainCircle.remove();
-    pointDiv = document.createElement("div");
-    pointDiv.id = "point";
-    if (points == 0) {
-        pointDiv.innerHTML = "That was very bad... You got " + points + " points";
-    } else if (points == 1) {
-            pointDiv.innerHTML = "That was very bad... You got " + points + " point";
-    } else if (points <= 20) {
-        pointDiv.innerHTML = "That was OK. You got " + points + " points";
-    } else if (points <= 40) {
-        pointDiv.innerHTML = "That was great. You got " + points + " points";
-    } else {
-        pointDiv.innerHTML = "Excellent, you are talented. You got " + points + " points :D!";
+    button.onmousedown = () => {
+        removeStartHTML();
+        startCalibration();
     }
-    content.appendChild(pointDiv);
+}
+
+// Calibration
+
+function startCalibration() {
+    calibrationDiv = document.createElement("div");
+    calibrationDiv.id = "countdown";
+    calibrationDiv.innerHTML = "The calibration begins in 5 seconds";
+    content.appendChild(calibrationDiv);
+
+    countDown(calibrationDiv, "calibration", calibrate);
+}
+
+function calibrate() {
+    mainClickedTime = 0;
+    targetClickedTime = 0;
+
+    mainCircle.onmousedown = () => {
+        mainClickedTime = new Date().getTime();
+        createRandomTarget();
+        mainCircle.onmousedown = null;
+    }
+    targetDiv.onmousedown = () => {
+        targetClickedTime = new Date().getTime();
+        targetDiv.remove();
+
+        IDsArray[n - 1] = target.calculateID();
+        MTsArray[n - 1] = targetClickedTime - mainClickedTime;
+
+        if (n == 1) {
+            calibrateResults();
+        } else {
+            n--;
+            calibrate();
+        }
+    }
 }
 
 function calibrateResults() {
@@ -101,51 +94,95 @@ function calibrateResults() {
     startTest();
 }
 
-function calibrate(n) {
-    mainClickedTime = 0;
-    targetClickedTime = 0;
+// Test
 
-    mainCircle.onmousedown = () => {
-        mainClickedTime = new Date().getTime();
-        createRandomTarget();
+function startTest() {
+    countdownDiv = document.createElement("div");
+    countdownDiv.id = "countdown";
+    countdownDiv.innerHTML = "The test begins in 5 seconds";
+    content.appendChild(countdownDiv);
+
+    countDown(countdownDiv, "test", startNewRound);
+}
+
+function startNewRound() {
+    if(round == 10) {
+        testResults();
     }
+    mainCircle.onmousedown = () => {
+        mainCircle.onmousedown = null;
+        startNewRoundConfiguration();
+    };
+}
+
+function startNewRoundConfiguration() {
+    createRandomTarget();
+    drawTarget(target);
+
+    time = slope * target.calculateID() + intersect * 1.2;
+    if (time < 1) {
+        time = (150 * Math.random()) + 10 * 1.2;
+    }
+
+    round++;
+
+    timeout = setTimeout(() => {
+        targetDiv.remove();
+        startNewRound();
+    }, time);
+
     targetDiv.onmousedown = () => {
-        targetClickedTime = new Date().getTime();
-        removeTarget();
-
-        IDsArray[n - 1] = target.calculateID();
-        MTsArray[n - 1] = targetClickedTime - mainClickedTime;
-
-        if (n == 1) {
-            calibrateResults();
-        } else {
-            calibrate(n - 1);
-        }
+        clearTimeout(timeout);
+        points++;
+        targetDiv.remove();
+        startNewRound();
     }
 }
 
-function linearRegression(x, y){
-    var lr = {};
-    var n = y.length;
-    var sum_x = 0;
-    var sum_y = 0;
-    var sum_xy = 0;
-    var sum_xx = 0;
-    var sum_yy = 0;
+function testResults() {
+    mainCircle.remove();
+    resultDiv = document.createElement("div");
+    resultDiv.id = "results";
 
-    for (var i = 0; i < n; i++) {
-        sum_x += x[i];
-        sum_y += y[i];
-        sum_xy += (x[i]*y[i]);
-        sum_xx += (x[i]*x[i]);
-        sum_yy += (y[i]*y[i]);
-    } 
+    createResults(points);
+    content.appendChild(resultDiv);
+}
 
-    lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
-    lr['intersect'] = (sum_y - lr.slope * sum_x)/n;
-    lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
+function createResults(points) {
+    hitRate = points / round;
+    resultDiv.innerHTML =   "Fitts's law experiment results<br>" +
+                            "You got " + points + " points<br>" +
+                            "Your hit rate is " + Math.round((hitRate * 100) * 100) / 100 + "%<br>" +
+                            "Slope: " + Math.round((slope / 1000) * 100) / 100 + " seconds/bit<br>" +
+                            "Intersect: " + Math.round((intersect / 1000) * 100) / 100 + " seconds<br>" +
+                            "Throughput: " + Math.round(((1 / slope) * 1000) * 100) / 100 + " bits/second";
+}
 
-    return lr;
+// Helper methods
+
+function removeStartHTML() {
+    title.remove();
+    description1.remove();
+    description2.remove();
+    button.remove();
+}
+
+function countDown(div, text, nextFunction) {
+    counter = 4;
+    countdown = setInterval(() => {
+        if (counter == 0) {
+            clearInterval(countdown);
+            div.remove();
+            content.appendChild(mainCircle);
+            nextFunction();
+        } else if (counter > 1) {
+            div.innerHTML = "The " + text + " begins in " + counter + " seconds";
+            counter--;
+        } else {
+            div.innerHTML = "The " + text + " begins in " + counter + " second";
+            counter--;
+        }   
+    }, 1000);
 }
 
 function createRandomTarget() {
@@ -181,9 +218,28 @@ function createRandomTargetPosition(diameter) {
     }
 }
 
-function removeTarget() {
-    targetDiv.remove();
+function linearRegression(x, y){
+    var lr = {};
+    var n = y.length;
+    var sum_x = 0;
+    var sum_y = 0;
+    var sum_xy = 0;
+    var sum_xx = 0;
+    var sum_yy = 0;
+
+    for (var i = 0; i < n; i++) {
+        sum_x += x[i];
+        sum_y += y[i];
+        sum_xy += (x[i]*y[i]);
+        sum_xx += (x[i]*x[i]);
+        sum_yy += (y[i]*y[i]);
+    } 
+
+    lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
+    lr['intersect'] = (sum_y - lr.slope * sum_x)/n;
+    lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
+
+    return lr;
 }
 
 init();
-

@@ -3,15 +3,30 @@
     --height: 768px;
 }
 
+#title {
+    text-align: center;
+    font-size: 30px;
+    transition: all 0.3s ease 0s;
+    color: white;
+}
+
+#description1, #description2{
+    text-align: center;
+    font-size: 25px;
+    transition: all 0.3s ease 0s;
+    color: white;
+}
+
 #content {
     display: inline-block;
-    border: solid 3px rgb(32, 179, 93);
-    background-color:  rgb(23, 77, 28);
+    border: solid 3px rgb(107, 107, 107);
+    background-color:  rgb(24, 24, 24);
     width: var(--width);
     height: var(--height);
     position: relative;
     margin-top:  40px;
     margin-left: calc(50% - var(--width)/2);
+    text-align: center;
 }
 
 #main-circle {
@@ -61,14 +76,47 @@
     background-color: #ffffff;
 }
 
-#point {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+#button {
+    margin-top: calc(var(--height)/2 - 32.5px - 46px - 38px - 38px - 75px);
     text-align: center;  
     user-select: none;
     border: none;
-    background: rgb(29, 85, 52);
+    background: rgb(66, 66, 66);
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+#button:hover {
+    background: rgb(88, 88, 88);
+    cursor: pointer;
+}
+
+#results {
+    margin-top: calc(var(--height)/2 - 82.5px);
+    text-align: center;  
+    user-select: none;
+    border: none;
+    background: rgb(66, 66, 66);
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+#countdown {
+    margin-top: calc(var(--height)/2 - 32.5px);
+    text-align: center;  
+    user-select: none;
+    border: none;
+    background: rgb(66, 66, 66);
     color: #ffffff !important;
     font-weight: 100;
     padding: 20px;
