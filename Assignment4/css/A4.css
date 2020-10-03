@@ -1,0 +1,87 @@
+:root{
+    --width: 1024px;
+    --height: 768px;
+}
+
+#content {
+    display: inline-block;
+    border: solid 3px rgb(32, 179, 93);
+    background-color:  rgb(23, 77, 28);
+    width: var(--width);
+    height: var(--height);
+    position: relative;
+    margin-top:  40px;
+    margin-left: calc(50% - var(--width)/2);
+}
+
+#main-circle {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: #325f2c;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-left: calc(var(--width)/2 - 15px);
+    margin-top: calc(var(--height)/2 - 15px);
+}
+
+#main-circle:hover{
+    background-color: #25701b;
+}
+
+.circle-1 {
+    height: 10px;
+    width: 10px;
+    background-color: #e7e7e7;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.circle-2 {
+    height: 30px;
+    width: 30px;
+    background-color: #e7e7e7;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.circle-3 {
+    height: 50px;
+    width: 50px;
+    background-color: #e7e7e7;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.circle-1:hover, .circle-2:hover, .circle-3:hover {
+    background-color: #ffffff;
+}
+
+#point {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;  
+    user-select: none;
+    border: none;
+    background: rgb(29, 85, 52);
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+#point:hover {
+    background: rgb(35, 107, 65);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57) ;
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    cursor: pointer;
+}
