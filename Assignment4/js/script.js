@@ -109,7 +109,7 @@ function startTest() {
 }
 
 function startNewRound() {
-    if(round == 5) {
+    if(round == 60) {
         testResults();
     }
     mainCircle.onmousedown = () => {
