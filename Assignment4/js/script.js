@@ -109,7 +109,7 @@ function startTest() {
 }
 
 function startNewRound() {
-    if(round == 60) {
+    if(round == 5) {
         testResults();
     }
     mainCircle.onmousedown = () => {
@@ -160,11 +160,11 @@ function testResults() {
 function createResults(points) {
     hitRate = points / round;
     resultDiv.innerHTML =   "Fitts's law experiment results<br><br>" +
-                            "You got " + points + " points<br>" +
-                            "Your hit rate is " + Math.round((hitRate * 100) * 100) / 100 + "%<br>" +
-                            "Slope: " + Math.round((regression.slope / 1000) * 100) / 100 + " seconds/bit<br>" +
-                            "Intersect: " + Math.round((regression.intersect / 1000) * 100) / 100 + " seconds<br>" +
-                            "Throughput: " + Math.round(((1 / regression.slope) * 1000) * 100) / 100 + " bits/second";
+                            "You got <span style='color: #58cf48'>" + points + "</span> points <br>" +
+                            "Your hit rate is <span style='color: #58cf48'>" + Math.round((hitRate * 100) * 100) / 100 + "</span>%<br>" +
+                            "Slope: <span style='color: #58cf48'>" + Math.round((regression.slope / 1000) * 100) / 100 + " </span> seconds/bit<br>" +
+                            "Intersect: <span style='color: #58cf48'>" + Math.round((regression.intersect / 1000) * 100) / 100 + "</span> seconds<br>" +
+                            "Throughput: <span style='color: #58cf48'>" + Math.round(((1 / regression.slope) * 1000) * 100) / 100 + "</span> bits/second";
 }
 
 // Helper methods
