@@ -102,6 +102,7 @@
 }
 
 #results {
+    line-height: 25px;
     margin-top: 270px;
     text-align: center;  
     border: solid 3px rgb(107, 107, 107);
