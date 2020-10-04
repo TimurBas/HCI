@@ -12,11 +12,10 @@ let diameterArray = [];
 let target;
 let IDsArray = [];
 let MTsArray = [];
-let slope;
-let intersect;
+let regression;
 let points = 0;
 let round = 0;
-let n = 2;
+let n = 0;
 
 class Position {
     constructor(x, y, distance) { 
@@ -74,29 +73,33 @@ function calibrate() {
         targetClickedTime = new Date().getTime();
         targetDiv.remove();
 
-        IDsArray[n - 1] = target.calculateID();
-        MTsArray[n - 1] = targetClickedTime - mainClickedTime;
+        IDsArray[n] = target.calculateID();
+        MTsArray[n] = targetClickedTime - mainClickedTime;
 
-        if (n == 1) {
+        n++;
+
+        if (n >= 5) {
             calibrateResults();
         } else {
-            n--;
             calibrate();
         }
     }
 }
 
 function calibrateResults() {
-    mainCircle.remove();
-    lr = linearRegression(IDsArray, MTsArray);
-    slope = lr.slope;
-    intersect = lr.intersect;
-    startTest();
+    regression = linearRegression(IDsArray, MTsArray);
+
+    if(regression.r2 >= 0.70 || n == 10) {
+        startTest();
+    } else {
+        calibrate();
+    }
 }
 
 // Test
 
 function startTest() {
+    mainCircle.remove();
     countdownDiv = document.createElement("div");
     countdownDiv.id = "countdown";
     countdownDiv.innerHTML = "The test begins in 5 seconds";
@@ -106,7 +109,7 @@ function startTest() {
 }
 
 function startNewRound() {
-    if(round == 5) {
+    if(round == 60) {
         testResults();
     }
     mainCircle.onmousedown = () => {
@@ -119,7 +122,7 @@ function startNewRoundConfiguration() {
     createRandomTarget();
     drawTarget(target);
 
-    time = slope * target.calculateID() + intersect * 1.2;
+    time = regression.slope * target.calculateID() + regression.intersect * 1.2;
     if (time < 1) {
         time = (150 * Math.random()) + 10 * 1.2;
     }
@@ -148,9 +151,9 @@ function testResults() {
     content.appendChild(resultDiv);
     emailBody = "Points: " + points + "<br>" +
                 "Hit rate: " + Math.round((hitRate * 100) * 100) / 100 + "<br>" +
-                "Slope: " + Math.round((slope / 1000) * 100) / 100 + "<br>" +
-                "Intersect: " + Math.round((intersect / 1000) * 100) / 100 + "<br>" +
-                "Throughput: " + Math.round(((1 / slope) * 1000) * 100) / 100;         
+                "Slope: " + Math.round((regression.slope / 1000) * 100) / 100 + "<br>" +
+                "Intersect: " + Math.round((regression.intersect / 1000) * 100) / 100 + "<br>" +
+                "Throughput: " + Math.round(((1 / regression.slope) * 1000) * 100) / 100;         
     sendEmail(emailBody);
 }
 
@@ -159,9 +162,9 @@ function createResults(points) {
     resultDiv.innerHTML =   "Fitts's law experiment results<br><br>" +
                             "You got " + points + " points<br>" +
                             "Your hit rate is " + Math.round((hitRate * 100) * 100) / 100 + "%<br>" +
-                            "Slope: " + Math.round((slope / 1000) * 100) / 100 + " seconds/bit<br>" +
-                            "Intersect: " + Math.round((intersect / 1000) * 100) / 100 + " seconds<br>" +
-                            "Throughput: " + Math.round(((1 / slope) * 1000) * 100) / 100 + " bits/second";
+                            "Slope: " + Math.round((regression.slope / 1000) * 100) / 100 + " seconds/bit<br>" +
+                            "Intersect: " + Math.round((regression.intersect / 1000) * 100) / 100 + " seconds<br>" +
+                            "Throughput: " + Math.round(((1 / regression.slope) * 1000) * 100) / 100 + " bits/second";
 }
 
 // Helper methods
