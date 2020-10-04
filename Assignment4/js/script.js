@@ -16,7 +16,7 @@ let slope;
 let intersect;
 let points = 0;
 let round = 0;
-let n = 10;
+let n = 2;
 
 class Position {
     constructor(x, y, distance) { 
@@ -106,7 +106,7 @@ function startTest() {
 }
 
 function startNewRound() {
-    if(round == 60) {
+    if(round == 5) {
         testResults();
     }
     mainCircle.onmousedown = () => {
@@ -156,7 +156,7 @@ function testResults() {
 
 function createResults(points) {
     hitRate = points / round;
-    resultDiv.innerHTML =   "Fitts's law experiment results<br>" +
+    resultDiv.innerHTML =   "Fitts's law experiment results<br><br>" +
                             "You got " + points + " points<br>" +
                             "Your hit rate is " + Math.round((hitRate * 100) * 100) / 100 + "%<br>" +
                             "Slope: " + Math.round((slope / 1000) * 100) / 100 + " seconds/bit<br>" +

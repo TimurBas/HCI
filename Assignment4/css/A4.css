@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
 :root{
     --width: 1024px;
     --height: 768px;
@@ -14,10 +16,11 @@
     max-width: 1000px;
     margin-left: 13px;
     text-align: center;
-    font-size: 25px;
+    font-size: 22px;
     transition: all 0.3s ease 0s;
-    color: white;
-}
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+} 
 
 #content {
     display: inline-block;
@@ -101,8 +104,7 @@
 #results {
     margin-top: 270px;
     text-align: center;  
-    user-select: none;
-    border: none;
+    border: solid 3px rgb(107, 107, 107);
     background: rgb(66, 66, 66);
     color: #ffffff !important;
     font-weight: 100;
@@ -111,6 +113,7 @@
     letter-spacing: 1px;
     display: inline-block;
     transition: all 0.3s ease 0s;
+    font-family: sans-serif;
 }
 
 #countdown {
@@ -126,4 +129,5 @@
     letter-spacing: 2px;
     display: inline-block;
     transition: all 0.3s ease 0s;
+    font-family: sans-serif;
 }
