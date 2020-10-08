@@ -3,6 +3,7 @@
 const content = document.getElementById("content");
 const mainCircle = document.getElementById("main-circle");
 const button = document.getElementById("button");
+const body = document.getElementsByTagName('body')[0];
 const width = 1024;
 const height = 768
 
@@ -105,13 +106,25 @@ function startTest() {
     countdownDiv.innerHTML = "The test begins in 5 seconds";
     content.appendChild(countdownDiv);
 
+    roundDiv = document.createElement("div");
+    roundDiv.id = "round";
+    body.insertBefore(roundDiv, content);
+
+    scoreDiv = document.createElement("div");
+    scoreDiv.id = "score";
+    body.insertBefore(scoreDiv, content);
+
     countDown(countdownDiv, "test", startNewRound);
 }
 
 function startNewRound() {
-    if(round == 60) {
+    if(round == 12) {
         testResults();
     }
+
+    roundDiv.innerHTML = "Rounds left: " + (12 - round);
+    scoreDiv.innerHTML = "Score: " + points;
+
     mainCircle.onmousedown = () => {
         mainCircle.onmousedown = null;
         startNewRoundConfiguration();
@@ -137,6 +150,7 @@ function startNewRoundConfiguration() {
     targetDiv.onmousedown = () => {
         clearTimeout(timeout);
         points++;
+        scoreDiv.innerHTML = "Score: " + points;
         targetDiv.remove();
         startNewRound();
     }
@@ -144,6 +158,8 @@ function startNewRoundConfiguration() {
 
 function testResults() {
     mainCircle.remove();
+    scoreDiv.remove();
+    roundDiv.remove();
     resultDiv = document.createElement("div");
     resultDiv.id = "results";
 

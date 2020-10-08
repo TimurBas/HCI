@@ -34,6 +34,23 @@
     text-align: center;
 }
 
+#round {
+    display: inline;
+    margin-top: 7px;
+    left: 1330px;
+    position: absolute;
+    font-size: 20px;
+    text-align: right;
+}
+
+#score {
+    display: inline;
+    margin-top: 7px;
+    left: 450px;
+    position: absolute;
+    font-size: 20px;;
+}
+
 #main-circle {
     position: absolute;
     height: 30px;
@@ -47,13 +64,14 @@
 }
 
 #main-circle:hover{
+    transform: scale(1.1);
     background-color: #25701b;
 }
 
 .circle-1 {
     height: 10px;
     width: 10px;
-    background-color: #e7e7e7;
+    background-color: #943939;
     text-align: center;
     cursor: pointer;
     border-radius: 50%;
@@ -62,7 +80,7 @@
 .circle-2 {
     height: 30px;
     width: 30px;
-    background-color: #e7e7e7;
+    background-color: #943939;
     text-align: center;
     cursor: pointer;
     border-radius: 50%;
@@ -71,14 +89,14 @@
 .circle-3 {
     height: 50px;
     width: 50px;
-    background-color: #e7e7e7;
+    background-color: #943939;
     text-align: center;
     cursor: pointer;
     border-radius: 50%;
 }
 
 .circle-1:hover, .circle-2:hover, .circle-3:hover {
-    background-color: #ffffff;
+    transform: scale(1.1);
 }
 
 #button {
