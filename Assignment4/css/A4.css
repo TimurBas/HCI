@@ -35,16 +35,15 @@
 }
 
 #round {
-    display: inline;
+    display: inline-block;
     margin-top: 7px;
-    left: 1330px;
+    right: 447px;
     position: absolute;
     font-size: 20px;
-    text-align: right;
 }
 
 #score {
-    display: inline;
+    display: inline-block;
     margin-top: 7px;
     left: 450px;
     position: absolute;
