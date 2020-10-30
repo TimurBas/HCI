@@ -35,20 +35,21 @@
 }
 
 #round {
-    display: inline;
+    display: inline-block;
     margin-top: 7px;
-    left: 1330px;
+    right: 447px;
     position: absolute;
     font-size: 20px;
-    text-align: right;
+    user-select: none;  
 }
 
 #score {
-    display: inline;
+    display: inline-block;
     margin-top: 7px;
     left: 450px;
     position: absolute;
-    font-size: 20px;;
+    font-size: 20px;
+    user-select: none;  
 }
 
 #main-circle {

@@ -118,11 +118,11 @@ function startTest() {
 }
 
 function startNewRound() {
-    if(round == 12) {
+    if(round == 60) {
         testResults();
     }
 
-    roundDiv.innerHTML = "Rounds left: " + (12 - round);
+    roundDiv.innerHTML = "Rounds left: " + (60 - round);
     scoreDiv.innerHTML = "Score: " + points;
 
     mainCircle.onmousedown = () => {
