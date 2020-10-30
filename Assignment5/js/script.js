@@ -1,4 +1,5 @@
 const dateIcon = document.getElementsByClassName("material-icons prefix")[0];
+const datePicker = document.getElementById("date_of_birth");
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('select');
@@ -14,11 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 dateIcon.addEventListener("click", function() {
-  var elems = document.querySelectorAll('.datepicker');
-  var options = {
-    format: 'dd/mm/yyyy'};
-  var instances = M.Datepicker.init(elems, options);
+  datePicker.click();
 });
+
+
+
+
 
 
 
