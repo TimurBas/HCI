@@ -79,7 +79,13 @@ td.is-selected.is-today {
     color: #333333 !important;
 }
 
+.download{
+  background-color: #333333 !important;
+}
 
+.divider {
+  background-color: #333333 !important;
+}
 
 
 
