@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="css/A5.css">
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <title>Whack-A-Mole Assignment</title>
+    <script src= 
+    "https://smtpjs.com/v3/smtp.js"> 
+    </script> 
+</head>
+<body>
+    <div class="container_">
+        <h1 class="home"><a href="../index.html">Assignment Hub</a></h1>
+    </div>
+    <div class="container">
+        <div class="flexbox">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="1">Mr.</option>
+                          <option value="2">Mrs.</option>
+                          <option value="3">Ms.</option>
+                          <option value="3">Miss</option>
+                        </select>
+                        <label>Title</label>
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="First Name" id="first_name" type="text" class="validate">
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Last Name" id="last_name" type="text" class="validate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s11">
+                        <input placeholder="Birthday" id="date_of_birth" type="text" class="datepicker">
+                        <i class="material-icons prefix">date_range</i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email" class="email-label">Email</label>
+                        <span class="helper-text" data-error="Wrong" data-success="right">Helper text</span>
+                      </div>
+                  </div>
+            </form>
+        </div>
+        
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
