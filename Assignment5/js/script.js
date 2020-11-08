@@ -19,8 +19,6 @@ dateIcon.addEventListener("click", function() {
 });
 
 
-
-
-
+   
 
 

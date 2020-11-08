@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../css/A7.css" />
+
+    <link
+      href="http://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <title>Form 3</title>
+  </head>
+  <body>
+    <div class="container_">
+      <h1 class="home"><a href="../../index.html">Assignment Hub</a></h1>
+    </div>
+
+    <div class="container">
+      <div class="flexbox">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <label>Form 3</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="section">
+              <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">Mr.</option>
+                  <option value="2">Mrs.</option>
+                  <option value="3">Ms.</option>
+                  <option value="3">Miss</option>
+                </select>
+                <label>Title</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input
+                placeholder="First Name"
+                id="first_name"
+                type="text"
+                class="validate"
+              />
+            </div>
+            <div class="input-field col s6">
+              <input
+                placeholder="Last Name"
+                id="last_name"
+                type="text"
+                class="validate"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s11">
+              <input
+                placeholder="Birthday"
+                id="date_of_birth"
+                type="text"
+                class="datepicker validate"
+              />
+              <i class="material-icons prefix">date_range</i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <label class="active">Number of Siblings</label>
+            </div>
+            <div class="col s12">
+              <input
+                type="range"
+                value="0"
+                max="15"
+                oninput="num.value = this.value"
+              />
+              <output class="validate" id="num">0</output>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" />
+              <label for="email" class="email-label">Email</label>
+              <span
+                class="helper-text"
+                data-error="Wrong"
+                data-success="Right"
+              ></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s8">
+              <input
+                placeholder="Street Name"
+                id="street_name"
+                type="text"
+                class="validate"
+              />
+              <label class="active">Adress</label>
+            </div>
+            <div class="input-field col s4">
+              <input
+                placeholder="House No."
+                id="house_number"
+                type="number"
+                min="0"
+                max="10000"
+                class="validate"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s8">
+              <input
+                placeholder="City"
+                id="city_name"
+                type="text"
+                class="validate"
+              />
+            </div>
+            <div class="input-field col s4">
+              <input
+                placeholder="Zip"
+                id="zip_code"
+                type="number"
+                min="0"
+                max="99999"
+                class="validate"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="section">
+              <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">None</option>
+                  <option value="2">Grundskole</option>
+                  <option value="3">Efterskole</option>
+                  <option value="4">Gymnasium STX</option>
+                  <option value="5">Gymnasium HHX</option>
+                  <option value="6">Gymnasium HF</option>
+                </select>
+                <label>Highest School Qualification</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                placeholder="2020"
+                id="school_graduation_number"
+                type="number"
+                value="2020"
+                min="1950"
+                max="2030"
+                class="validate"
+              />
+              <label>Year of School Graduation</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                placeholder="2020"
+                id="color-picker"
+                type="color"
+                class="validate"
+                value="#333333"
+              />
+              <label class="active">Favourite colour</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="section">
+              <div class="input-field col s12">
+                <select multiple>
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="1">Football</option>
+                  <option value="2">Badminton</option>
+                  <option value="3">Field Hockey</option>
+                  <option value="4">Volleyball</option>
+                  <option value="5">Basketball</option>
+                  <option value="6">Tennis</option>
+                  <option value="6">Cricket</option>
+                  <option value="6">Table Tennis</option>
+                  <option value="6">Baseball</option>
+                  <option value="6">Golf</option>
+                </select>
+                <label>Favourite Sports</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <button
+                class="btn waves-effect waves-light"
+                type="submit"
+                name="action"
+              >
+                Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>
