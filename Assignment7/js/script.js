@@ -32,5 +32,6 @@ window.onload = () => {
 
 btn.onclick = () => {
   endTime = new Date().getTime();
-  alert("Time spent on filling the form: " + ((endTime - startTime) * 0.001).toFixed(2) + "s")
+  time = endTime - startTime;
+  alert("Time spent on filling the form: " + (time * 0.001).toFixed(2) + "s")
 }
