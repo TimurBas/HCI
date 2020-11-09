@@ -1,5 +1,9 @@
 const dateIcon = document.getElementsByClassName("material-icons prefix")[0];
 const datePicker = document.getElementById("date_of_birth");
+const btn = document.getElementById("button1");
+
+let startTime;
+let endTime;
 
 document.addEventListener("DOMContentLoaded", function () {
   var elems = document.querySelectorAll("select");
@@ -20,3 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
 dateIcon.addEventListener("click", function () {
   datePicker.click();
 });
+
+document.onload = () => {
+  startTime = new Date();
+}
+
+btn.onclick = () => {
+  endTime = new Date();
+  
+}
+
+
