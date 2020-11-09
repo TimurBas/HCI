@@ -1,6 +1,7 @@
 const dateIcon = document.getElementsByClassName("material-icons prefix")[0];
 const datePicker = document.getElementById("date_of_birth");
 const btn = document.getElementById("button1");
+const res = document.getElementById("res");
 
 let startTime;
 let endTime;
@@ -25,13 +26,11 @@ dateIcon.addEventListener("click", function () {
   datePicker.click();
 });
 
-document.onload = () => {
-  startTime = new Date();
+window.onload = () => {
+  startTime = new Date().getTime();
 }
 
 btn.onclick = () => {
-  endTime = new Date();
-  
+  endTime = new Date().getTime();
+  alert("Time spent on filling the form: " + ((endTime - startTime) * 0.001).toFixed(2) + "s")
 }
-
-
