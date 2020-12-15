@@ -13,3 +13,5 @@
 [Assignment 3]: https://timurbas.github.io/HCI/Assignment3/A3.html
 [Assignment 4]: https://timurbas.github.io/HCI/Assignment4/A4.html
 [Assignment 5]: https://timurbas.github.io/HCI/Assignment5/A5.html
+[Assignment 6]: https://github.com/TimurBas/HCI/raw/master/Assignment6/DA4_g07_assignment6.pdf
+[Assignment 7]: https://timurbas.github.io/HCI/Assignment7/A7.html
